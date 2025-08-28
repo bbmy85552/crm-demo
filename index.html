@@ -56,6 +56,14 @@
                 </svg>
                 <h1 class="text-lg font-semibold text-white ml-2">Chatbot CRM</h1>
             </div>
+            <div class="flex items-center">
+                <button id="addChatbotBtn" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center space-x-2 transition-colors duration-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span>添加 Chatbot</span>
+                </button>
+            </div>
             <div class="flex-1 max-w-xl mx-8">
                 <div class="relative">
                     <input type="text" placeholder="搜索客户、案例..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
@@ -1263,7 +1271,7 @@
                     <!-- Chatbot卡片网格 -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
                         <!-- 客服机器人 -->
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg group">
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg group cursor-pointer chatbot-card" data-bot-id="customer-service">
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
@@ -1302,7 +1310,7 @@
                         </div>
                         
                         <!-- 销售机器人 -->
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-green-500/50 transition-all duration-300 hover:shadow-lg group">
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-green-500/50 transition-all duration-300 hover:shadow-lg group cursor-pointer chatbot-card" data-bot-id="sales">
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
@@ -1341,7 +1349,7 @@
                         </div>
                         
                         <!-- HR招聘机器人 -->
-                        <div class="bg-gray-800/50 rounded-xl border border-yellow-500/30 p-6 flex flex-col justify-between hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg group">
+                        <div class="bg-gray-800/50 rounded-xl border border-yellow-500/30 p-6 flex flex-col justify-between hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg group cursor-pointer chatbot-card" data-bot-id="hr-recruitment">
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
@@ -1380,7 +1388,7 @@
                         </div>
                         
                         <!-- 技术支持机器人 -->
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg group">
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg group cursor-pointer chatbot-card" data-bot-id="tech-support">
                             <div>
                                 <div class="flex items-center justify-between mb-3">
                                     <div class="flex items-center">
@@ -1607,6 +1615,252 @@
                     </button>
                     <button class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg">
                         紧急处理
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 机器人详情对话框 -->
+    <div id="botDetailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-800 rounded-xl max-w-5xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div id="modalBotIcon" class="w-12 h-12 rounded-lg flex items-center justify-center mr-4">
+                            <!-- 动态图标 -->
+                        </div>
+                        <div>
+                            <h2 id="modalBotName" class="text-xl font-semibold text-white"></h2>
+                            <p id="modalBotDescription" class="text-gray-400 text-sm"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span id="modalBotStatus" class="px-3 py-1 text-xs font-semibold rounded-full"></span>
+                        <button id="closeBotModal" class="text-gray-400 hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <!-- 基础统计 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-gray-700/30 rounded-lg p-4 text-center">
+                        <div id="modalBotStat1Value" class="text-2xl font-bold text-white mb-1"></div>
+                        <div id="modalBotStat1Label" class="text-xs text-gray-400"></div>
+                    </div>
+                    <div class="bg-gray-700/30 rounded-lg p-4 text-center">
+                        <div id="modalBotStat2Value" class="text-2xl font-bold text-white mb-1"></div>
+                        <div id="modalBotStat2Label" class="text-xs text-gray-400"></div>
+                    </div>
+                    <div class="bg-gray-700/30 rounded-lg p-4 text-center">
+                        <div id="modalBotStat3Value" class="text-2xl font-bold text-white mb-1"></div>
+                        <div id="modalBotStat3Label" class="text-xs text-gray-400"></div>
+                    </div>
+                    <div class="bg-gray-700/30 rounded-lg p-4 text-center">
+                        <div id="modalBotStat4Value" class="text-2xl font-bold text-white mb-1"></div>
+                        <div id="modalBotStat4Label" class="text-xs text-gray-400"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- 特殊功能 -->
+                    <div class="bg-gray-700/30 rounded-lg p-4">
+                        <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                            <svg class="w-5 h-5 text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            特殊功能
+                        </h4>
+                        <div id="modalBotFeatures" class="space-y-3">
+                            <!-- 动态内容 -->
+                        </div>
+                    </div>
+
+                    <!-- 使用情况分析 -->
+                    <div class="bg-gray-700/30 rounded-lg p-4">
+                        <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                            <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            使用情况分析
+                        </h4>
+                        <div id="modalBotAnalytics" class="space-y-3">
+                            <!-- 动态内容 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 近期活动 -->
+                <div class="mt-6 bg-gray-700/30 rounded-lg p-4">
+                    <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-purple-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        近期活动
+                    </h4>
+                    <div id="modalBotActivity" class="space-y-2">
+                        <!-- 动态内容 -->
+                    </div>
+                </div>
+
+                <!-- 配置和管理 -->
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button class="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
+                        查看日志
+                    </button>
+                    <button class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg">
+                        编辑配置
+                    </button>
+                    <button id="modalBotActionBtn" class="px-4 py-2 rounded-lg text-white font-medium">
+                        <!-- 动态按钮 -->
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加Chatbot对话框 -->
+    <div id="addChatbotModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-800 rounded-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-semibold text-white">添加新的 Chatbot</h2>
+                            <p class="text-gray-400 text-sm">配置您的 AI 助手并开始使用</p>
+                        </div>
+                    </div>
+                    <button id="closeAddChatbotModal" class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <!-- Chatbot基本信息 -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-white mb-4">基本信息</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Chatbot 名称</label>
+                            <input type="text" id="chatbotName" placeholder="例如：客服助手、销售机器人..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">功能描述</label>
+                            <textarea id="chatbotDescription" rows="3" placeholder="描述这个Chatbot的主要功能和用途..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors resize-none"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Chatbot 类型</label>
+                            <select id="chatbotType" class="w-full bg-gray-700/50 text-gray-300 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                                <option value="customer-service">客服机器人</option>
+                                <option value="sales">销售机器人</option>
+                                <option value="hr">HR招聘机器人</option>
+                                <option value="tech-support">技术支持机器人</option>
+                                <option value="custom">自定义机器人</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Key 配置 -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-medium text-white">API Key 配置</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-gray-400">当前: 免费版 (1个Key)</span>
+                            <button id="upgradeBtn" class="text-xs bg-yellow-600 hover:bg-yellow-500 text-white px-2 py-1 rounded-full transition-colors">
+                                升级会员
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="apiKeyContainer" class="space-y-3">
+                        <div class="api-key-input flex items-center space-x-2">
+                            <div class="flex-1">
+                                <input type="password" placeholder="输入您的 API Key..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                            </div>
+                            <button class="toggle-visibility text-gray-400 hover:text-white p-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button id="addApiKeyBtn" class="mt-3 text-indigo-400 hover:text-indigo-300 text-sm flex items-center space-x-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        <span>添加更多 API Key</span>
+                    </button>
+                    
+                    <!-- 会员提示 -->
+                    <div id="membershipNotice" class="hidden mt-4 p-4 bg-yellow-900/20 border border-yellow-700/50 rounded-lg">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-yellow-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                            <div>
+                                <h4 class="text-yellow-300 font-medium">需要会员版本</h4>
+                                <p class="text-yellow-200 text-sm mt-1">多个 API Key 功能需要升级到会员版本。会员版本支持：</p>
+                                <ul class="text-yellow-200 text-sm mt-2 space-y-1 list-disc list-inside">
+                                    <li>无限制的 API Key 数量</li>
+                                    <li>负载均衡和故障转移</li>
+                                    <li>高级分析和监控</li>
+                                    <li>优先技术支持</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 高级设置 -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-white mb-4">高级设置</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label class="text-sm font-medium text-gray-300">启用日志记录</label>
+                                <p class="text-xs text-gray-500 mt-1">记录所有对话以便分析和改进</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <label class="text-sm font-medium text-gray-300">自动学习模式</label>
+                                <p class="text-xs text-gray-500 mt-1">基于用户反馈自动优化回复质量</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-600 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="flex justify-end space-x-3">
+                    <button id="cancelAddChatbot" class="bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-lg transition-colors">
+                        取消
+                    </button>
+                    <button id="confirmAddChatbot" class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-lg transition-colors">
+                        添加 Chatbot
                     </button>
                 </div>
             </div>
@@ -1978,6 +2232,652 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && !userDetailModal.classList.contains('hidden')) {
                 closeUserDetail();
+            }
+            if (e.key === 'Escape' && !botDetailModal.classList.contains('hidden')) {
+                closeBotDetail();
+            }
+        });
+
+        // --- 机器人详情对话框功能 ---
+        const botDetailModal = document.getElementById('botDetailModal');
+        const closeBotModalBtn = document.getElementById('closeBotModal');
+
+        // 机器人数据模拟
+        const botData = {
+            'customer-service': {
+                name: '客服机器人',
+                description: '处理客户咨询，提供7x24小时智能支持服务',
+                status: '在线',
+                statusClass: 'bg-green-900 text-green-200 animate-pulse',
+                iconClass: 'bg-gradient-to-r from-blue-500 to-blue-600',
+                iconSvg: `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>`,
+                stats: {
+                    stat1: { value: '34,500', label: '月交互量' },
+                    stat2: { value: '92%', label: '满意度' },
+                    stat3: { value: '0.6s', label: '响应时间' },
+                    stat4: { value: '98.5%', label: '在线率' }
+                },
+                features: [
+                    {
+                        icon: '📄',
+                        title: '总结父页面',
+                        description: '自动提取并总结用户浏览页面的关键信息，提供个性化服务',
+                        usage: '日均使用 2,340 次',
+                        trend: 'up'
+                    },
+                    {
+                        icon: '✉️',
+                        title: '智能邮件内容生成',
+                        description: '根据客户需求和历史记录生成个性化邮件回复',
+                        usage: '日均使用 1,850 次',
+                        trend: 'up'
+                    },
+                    {
+                        icon: '🎯',
+                        title: '情感分析',
+                        description: '实时分析客户情绪，调整回复语调和策略',
+                        usage: '日均使用 4,120 次',
+                        trend: 'stable'
+                    },
+                    {
+                        icon: '🔄',
+                        title: '多语言实时翻译',
+                        description: '支持50+语言的实时翻译，无缝跨语言沟通',
+                        usage: '日均使用 890 次',
+                        trend: 'up'
+                    }
+                ],
+                analytics: [
+                    {
+                        title: '高峰时段',
+                        value: '9:00-11:00, 14:00-16:00',
+                        icon: '⏰'
+                    },
+                    {
+                        title: '最常见问题',
+                        value: '产品咨询 (35%)',
+                        icon: '❓'
+                    },
+                    {
+                        title: '平均解决时间',
+                        value: '2.3分钟',
+                        icon: '⚡'
+                    },
+                    {
+                        title: '客户满意度趋势',
+                        value: '↗️ 持续上升',
+                        icon: '📈'
+                    }
+                ],
+                activities: [
+                    '2024-08-28 14:30 - 处理了一起复杂的退款咨询，客户满意度5星',
+                    '2024-08-28 13:45 - 自动生成产品推荐邮件，转化率提升15%',
+                    '2024-08-28 12:20 - 识别并升级了一起技术问题到人工客服',
+                    '2024-08-28 11:15 - 成功处理多语言咨询，德语客户给予好评',
+                    '2024-08-28 10:30 - 智能总结客户浏览历史，提供精准产品建议'
+                ],
+                actionBtn: {
+                    text: '管理机器人',
+                    class: 'bg-indigo-600 hover:bg-indigo-500'
+                }
+            },
+            'sales': {
+                name: '销售机器人',
+                description: '辅助销售团队，自动跟进潜在客户和管理线索',
+                status: '在线',
+                statusClass: 'bg-green-900 text-green-200 animate-pulse',
+                iconClass: 'bg-gradient-to-r from-green-500 to-green-600',
+                iconSvg: `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>`,
+                stats: {
+                    stat1: { value: '18,900', label: '月交互量' },
+                    stat2: { value: '18.5%', label: '转化率' },
+                    stat3: { value: 'A级', label: '线索质量' },
+                    stat4: { value: '156', label: '活跃线索' }
+                },
+                features: [
+                    {
+                        icon: '📊',
+                        title: '客户行为分析',
+                        description: '深度分析客户浏览行为，预测购买意向和最佳联系时机',
+                        usage: '日均使用 1,680 次',
+                        trend: 'up'
+                    },
+                    {
+                        icon: '💌',
+                        title: '个性化营销邮件',
+                        description: '基于客户画像生成个性化营销内容，提高邮件打开率',
+                        usage: '日均使用 2,120 次',
+                        trend: 'up'
+                    },
+                    {
+                        icon: '🎪',
+                        title: '销售话术优化',
+                        description: '实时分析对话内容，推荐最佳销售话术和策略',
+                        usage: '日均使用 890 次',
+                        trend: 'stable'
+                    },
+                    {
+                        icon: '📅',
+                        title: '智能跟进提醒',
+                        description: '自动分析客户状态，智能安排跟进时间和方式',
+                        usage: '日均使用 1,450 次',
+                        trend: 'up'
+                    }
+                ],
+                analytics: [
+                    {
+                        title: '最佳跟进时间',
+                        value: '周二、周四 10:00-12:00',
+                        icon: '📅'
+                    },
+                    {
+                        title: '高转化产品',
+                        value: '企业版套餐 (28%)',
+                        icon: '🏆'
+                    },
+                    {
+                        title: '平均成交周期',
+                        value: '12.5天',
+                        icon: '⏱️'
+                    },
+                    {
+                        title: '月度业绩增长',
+                        value: '↗️ +23%',
+                        icon: '💰'
+                    }
+                ],
+                activities: [
+                    '2024-08-28 15:20 - 成功转化一个高价值客户，订单金额 ¥58,000',
+                    '2024-08-28 14:15 - 发送个性化产品推荐邮件，打开率达到 45%',
+                    '2024-08-28 13:30 - 识别热门线索，自动安排销售经理跟进',
+                    '2024-08-28 12:45 - 优化销售话术，客户响应率提升 18%',
+                    '2024-08-28 11:00 - 智能分析客户需求，推荐最适合的产品组合'
+                ],
+                actionBtn: {
+                    text: '管理机器人',
+                    class: 'bg-green-600 hover:bg-green-500'
+                }
+            },
+            'hr-recruitment': {
+                name: 'HR招聘机器人',
+                description: '初步筛选简历，安排面试日程和候选人沟通',
+                status: '维护中',
+                statusClass: 'bg-yellow-900 text-yellow-200',
+                iconClass: 'bg-gradient-to-r from-yellow-500 to-orange-500',
+                iconSvg: `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                </svg>`,
+                stats: {
+                    stat1: { value: '5,230', label: '月交互量' },
+                    stat2: { value: '85%', label: '筛选效率' },
+                    stat3: { value: '正在更新', label: '维护状态' },
+                    stat4: { value: '2小时', label: '预计完成' }
+                },
+                features: [
+                    {
+                        icon: '🔍',
+                        title: '智能简历筛选',
+                        description: '基于AI算法自动筛选简历，匹配度评分和排序',
+                        usage: '维护中',
+                        trend: 'maintenance'
+                    },
+                    {
+                        icon: '📋',
+                        title: '自动化面试安排',
+                        description: '智能协调候选人和面试官时间，自动发送面试邀请',
+                        usage: '维护中',
+                        trend: 'maintenance'
+                    },
+                    {
+                        icon: '💬',
+                        title: '候选人预沟通',
+                        description: '面试前与候选人进行基础沟通，收集必要信息',
+                        usage: '维护中',
+                        trend: 'maintenance'
+                    },
+                    {
+                        icon: '📈',
+                        title: '招聘数据分析',
+                        description: '分析招聘流程效率，提供优化建议和趋势报告',
+                        usage: '维护中',
+                        trend: 'maintenance'
+                    }
+                ],
+                analytics: [
+                    {
+                        title: '维护进度',
+                        value: '75% 完成',
+                        icon: '🔧'
+                    },
+                    {
+                        title: '更新内容',
+                        value: 'AI模型优化',
+                        icon: '🤖'
+                    },
+                    {
+                        title: '预计恢复',
+                        value: '今日 18:00',
+                        icon: '⏰'
+                    },
+                    {
+                        title: '影响范围',
+                        value: '部分功能暂停',
+                        icon: '⚠️'
+                    }
+                ],
+                activities: [
+                    '2024-08-28 16:00 - 开始系统维护，升级AI筛选算法',
+                    '2024-08-28 15:30 - 备份现有数据和配置',
+                    '2024-08-28 14:45 - 通知相关用户维护计划',
+                    '2024-08-28 12:00 - 上午最后一次正常运行，处理了85份简历',
+                    '2024-08-27 17:30 - 昨日成功安排了12场面试'
+                ],
+                actionBtn: {
+                    text: '查看维护日志',
+                    class: 'bg-yellow-600 hover:bg-yellow-500'
+                }
+            },
+            'tech-support': {
+                name: '技术支持机器人',
+                description: '解答常见技术问题，创建工单和技术文档检索',
+                status: '在线',
+                statusClass: 'bg-green-900 text-green-200 animate-pulse',
+                iconClass: 'bg-gradient-to-r from-purple-500 to-indigo-600',
+                iconSvg: `<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>`,
+                stats: {
+                    stat1: { value: '12,800', label: '月交互量' },
+                    stat2: { value: '78%', label: '解决率' },
+                    stat3: { value: '2.5K', label: '知识库条目' },
+                    stat4: { value: '1.8分钟', label: '平均解决时间' }
+                },
+                features: [
+                    {
+                        icon: '🔧',
+                        title: '智能故障诊断',
+                        description: '基于症状描述自动诊断技术问题，提供解决方案',
+                        usage: '日均使用 3,200 次',
+                        trend: 'up'
+                    },
+                    {
+                        icon: '📚',
+                        title: '知识库智能检索',
+                        description: '快速检索技术文档，匹配最相关的解决方案',
+                        usage: '日均使用 2,850 次',
+                        trend: 'stable'
+                    },
+                    {
+                        icon: '🎫',
+                        title: '自动工单创建',
+                        description: '复杂问题自动创建工单，分配给合适的技术专家',
+                        usage: '日均使用 420 次',
+                        trend: 'down'
+                    },
+                    {
+                        icon: '📊',
+                        title: '问题趋势分析',
+                        description: '分析常见问题趋势，为产品改进提供数据支持',
+                        usage: '每日生成报告',
+                        trend: 'stable'
+                    }
+                ],
+                analytics: [
+                    {
+                        title: '热门问题类型',
+                        value: '登录问题 (28%)',
+                        icon: '🔑'
+                    },
+                    {
+                        title: '解决效率',
+                        value: '首次解决率 78%',
+                        icon: '✅'
+                    },
+                    {
+                        title: '用户满意度',
+                        value: '4.6/5.0 星',
+                        icon: '⭐'
+                    },
+                    {
+                        title: '知识库更新',
+                        value: '本周新增 15 条',
+                        icon: '📝'
+                    }
+                ],
+                activities: [
+                    '2024-08-28 15:45 - 成功解决一起复杂的API集成问题',
+                    '2024-08-28 14:20 - 更新知识库，新增5个常见问题解答',
+                    '2024-08-28 13:10 - 自动创建高优先级工单，涉及系统性能问题',
+                    '2024-08-28 12:30 - 智能诊断网络连接问题，引导用户自助解决',
+                    '2024-08-28 11:15 - 生成每日问题趋势报告，发现新的问题模式'
+                ],
+                actionBtn: {
+                    text: '管理机器人',
+                    class: 'bg-purple-600 hover:bg-purple-500'
+                }
+            }
+        };
+
+        // 显示机器人详情对话框
+        function showBotDetail(botId) {
+            const bot = botData[botId];
+            if (!bot) return;
+
+            // 填充基本信息
+            document.getElementById('modalBotName').textContent = bot.name;
+            document.getElementById('modalBotDescription').textContent = bot.description;
+            
+            const statusSpan = document.getElementById('modalBotStatus');
+            statusSpan.textContent = bot.status;
+            statusSpan.className = `px-3 py-1 text-xs font-semibold rounded-full ${bot.statusClass}`;
+            
+            const iconDiv = document.getElementById('modalBotIcon');
+            iconDiv.className = `w-12 h-12 ${bot.iconClass} rounded-lg flex items-center justify-center mr-4`;
+            iconDiv.innerHTML = bot.iconSvg;
+
+            // 填充统计数据
+            document.getElementById('modalBotStat1Value').textContent = bot.stats.stat1.value;
+            document.getElementById('modalBotStat1Label').textContent = bot.stats.stat1.label;
+            document.getElementById('modalBotStat2Value').textContent = bot.stats.stat2.value;
+            document.getElementById('modalBotStat2Label').textContent = bot.stats.stat2.label;
+            document.getElementById('modalBotStat3Value').textContent = bot.stats.stat3.value;
+            document.getElementById('modalBotStat3Label').textContent = bot.stats.stat3.label;
+            document.getElementById('modalBotStat4Value').textContent = bot.stats.stat4.value;
+            document.getElementById('modalBotStat4Label').textContent = bot.stats.stat4.label;
+
+            // 填充特殊功能
+            const featuresDiv = document.getElementById('modalBotFeatures');
+            featuresDiv.innerHTML = bot.features.map(feature => `
+                <div class="flex items-start space-x-3 p-3 rounded-lg bg-gray-600/20 border border-gray-600/30">
+                    <span class="text-lg">${feature.icon}</span>
+                    <div class="flex-1">
+                        <h5 class="font-medium text-white">${feature.title}</h5>
+                        <p class="text-sm text-gray-300 mt-1">${feature.description}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-xs text-gray-400">${feature.usage}</span>
+                            <span class="text-xs ${getTrendColor(feature.trend)}">${getTrendIcon(feature.trend)}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 填充使用情况分析
+            const analyticsDiv = document.getElementById('modalBotAnalytics');
+            analyticsDiv.innerHTML = bot.analytics.map(item => `
+                <div class="flex items-center justify-between p-3 rounded-lg bg-gray-600/20">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-lg">${item.icon}</span>
+                        <span class="text-sm text-gray-300">${item.title}</span>
+                    </div>
+                    <span class="text-sm text-white font-medium">${item.value}</span>
+                </div>
+            `).join('');
+
+            // 填充近期活动
+            const activityDiv = document.getElementById('modalBotActivity');
+            activityDiv.innerHTML = bot.activities.map(activity => `
+                <div class="bg-gray-600/20 p-3 rounded-lg">
+                    <p class="text-sm text-gray-300">${activity}</p>
+                </div>
+            `).join('');
+
+            // 设置操作按钮
+            const actionBtn = document.getElementById('modalBotActionBtn');
+            actionBtn.textContent = bot.actionBtn.text;
+            actionBtn.className = `px-4 py-2 rounded-lg text-white font-medium ${bot.actionBtn.class}`;
+
+            // 显示对话框
+            botDetailModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 获取趋势颜色
+        function getTrendColor(trend) {
+            const colors = {
+                'up': 'text-green-400',
+                'down': 'text-red-400',
+                'stable': 'text-gray-400',
+                'maintenance': 'text-yellow-400'
+            };
+            return colors[trend] || 'text-gray-400';
+        }
+
+        // 获取趋势图标
+        function getTrendIcon(trend) {
+            const icons = {
+                'up': '↗️',
+                'down': '↘️',
+                'stable': '→',
+                'maintenance': '🔧'
+            };
+            return icons[trend] || '→';
+        }
+
+        // 关闭机器人详情对话框
+        function closeBotDetail() {
+            botDetailModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // 绑定机器人对话框事件监听器
+        closeBotModalBtn.addEventListener('click', closeBotDetail);
+        botDetailModal.addEventListener('click', (e) => {
+            if (e.target === botDetailModal) {
+                closeBotDetail();
+            }
+        });
+
+        // 为机器人卡片添加点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const botCards = document.querySelectorAll('.chatbot-card');
+            botCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // 如果点击的是按钮，不触发卡片点击事件
+                    if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                        return;
+                    }
+                    
+                    const botId = this.getAttribute('data-bot-id');
+                    showBotDetail(botId);
+                });
+            });
+        });
+
+        // --- 添加Chatbot对话框功能 ---
+        const addChatbotModal = document.getElementById('addChatbotModal');
+        const addChatbotBtn = document.getElementById('addChatbotBtn');
+        const closeAddChatbotModalBtn = document.getElementById('closeAddChatbotModal');
+        const cancelAddChatbotBtn = document.getElementById('cancelAddChatbot');
+        const confirmAddChatbotBtn = document.getElementById('confirmAddChatbot');
+        const addApiKeyBtn = document.getElementById('addApiKeyBtn');
+        const membershipNotice = document.getElementById('membershipNotice');
+        const apiKeyContainer = document.getElementById('apiKeyContainer');
+
+        let apiKeyCount = 1;
+        const maxFreeApiKeys = 1;
+
+        // 显示添加Chatbot对话框
+        function showAddChatbotModal() {
+            addChatbotModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭添加Chatbot对话框
+        function closeAddChatbotModal() {
+            addChatbotModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            // 重置表单
+            resetAddChatbotForm();
+        }
+
+        // 重置表单
+        function resetAddChatbotForm() {
+            document.getElementById('chatbotName').value = '';
+            document.getElementById('chatbotDescription').value = '';
+            document.getElementById('chatbotType').value = 'customer-service';
+            
+            // 重置API Key输入框
+            const apiKeyInputs = apiKeyContainer.querySelectorAll('.api-key-input');
+            apiKeyInputs.forEach((input, index) => {
+                if (index === 0) {
+                    // 保留第一个输入框，清空内容
+                    input.querySelector('input').value = '';
+                } else {
+                    // 移除额外的输入框
+                    input.remove();
+                }
+            });
+            
+            apiKeyCount = 1;
+            membershipNotice.classList.add('hidden');
+            addApiKeyBtn.classList.remove('hidden');
+        }
+
+        // 添加新的API Key输入框
+        function addApiKeyInput() {
+            if (apiKeyCount >= maxFreeApiKeys) {
+                // 显示会员提示
+                membershipNotice.classList.remove('hidden');
+                return;
+            }
+
+            apiKeyCount++;
+            const newApiKeyInput = document.createElement('div');
+            newApiKeyInput.className = 'api-key-input flex items-center space-x-2';
+            newApiKeyInput.innerHTML = `
+                <div class="flex-1">
+                    <input type="password" placeholder="输入您的 API Key..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                </div>
+                <button class="toggle-visibility text-gray-400 hover:text-white p-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                </button>
+                <button class="remove-api-key text-red-400 hover:text-red-300 p-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                    </svg>
+                </button>
+            `;
+
+            apiKeyContainer.appendChild(newApiKeyInput);
+
+            // 绑定删除按钮事件
+            const removeBtn = newApiKeyInput.querySelector('.remove-api-key');
+            removeBtn.addEventListener('click', function() {
+                newApiKeyInput.remove();
+                apiKeyCount--;
+                if (apiKeyCount <= maxFreeApiKeys) {
+                    membershipNotice.classList.add('hidden');
+                    addApiKeyBtn.classList.remove('hidden');
+                }
+            });
+
+            // 绑定显示/隐藏密码按钮事件
+            bindPasswordToggle(newApiKeyInput);
+
+            // 如果达到免费版限制，隐藏添加按钮
+            if (apiKeyCount >= maxFreeApiKeys) {
+                addApiKeyBtn.classList.add('hidden');
+            }
+        }
+
+        // 绑定密码显示/隐藏功能
+        function bindPasswordToggle(container) {
+            const toggleBtn = container.querySelector('.toggle-visibility');
+            const input = container.querySelector('input');
+            
+            toggleBtn.addEventListener('click', function() {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    toggleBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"></path>
+                        </svg>
+                    `;
+                } else {
+                    input.type = 'password';
+                    toggleBtn.innerHTML = `
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    `;
+                }
+            });
+        }
+
+        // 确认添加Chatbot
+        function confirmAddChatbot() {
+            const name = document.getElementById('chatbotName').value.trim();
+            const description = document.getElementById('chatbotDescription').value.trim();
+            const type = document.getElementById('chatbotType').value;
+            
+            // 获取所有API Keys
+            const apiKeyInputs = apiKeyContainer.querySelectorAll('input[type="password"], input[type="text"]');
+            const apiKeys = Array.from(apiKeyInputs)
+                .map(input => input.value.trim())
+                .filter(key => key.length > 0);
+
+            // 基本验证
+            if (!name) {
+                alert('请输入Chatbot名称');
+                return;
+            }
+
+            if (apiKeys.length === 0) {
+                alert('请至少输入一个API Key');
+                return;
+            }
+
+            // 模拟添加成功
+            alert(`成功添加Chatbot: ${name}\n类型: ${type}\n配置的API Keys: ${apiKeys.length}个`);
+            closeAddChatbotModal();
+        }
+
+        // 绑定事件监听器
+        addChatbotBtn.addEventListener('click', showAddChatbotModal);
+        closeAddChatbotModalBtn.addEventListener('click', closeAddChatbotModal);
+        cancelAddChatbotBtn.addEventListener('click', closeAddChatbotModal);
+        confirmAddChatbotBtn.addEventListener('click', confirmAddChatbot);
+        addApiKeyBtn.addEventListener('click', addApiKeyInput);
+
+        // 点击背景关闭对话框
+        addChatbotModal.addEventListener('click', (e) => {
+            if (e.target === addChatbotModal) {
+                closeAddChatbotModal();
+            }
+        });
+
+        // 升级会员按钮
+        document.getElementById('upgradeBtn').addEventListener('click', function() {
+            alert('升级到会员版本可以享受无限制的API Key数量和更多高级功能！');
+        });
+
+        // 初始化密码显示/隐藏功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialApiKeyInput = apiKeyContainer.querySelector('.api-key-input');
+            if (initialApiKeyInput) {
+                bindPasswordToggle(initialApiKeyInput);
+            }
+        });
+
+        // ESC键关闭对话框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (!userDetailModal.classList.contains('hidden')) {
+                    closeUserDetail();
+                } else if (!botDetailModal.classList.contains('hidden')) {
+                    closeBotDetail();
+                } else if (!addChatbotModal.classList.contains('hidden')) {
+                    closeAddChatbotModal();
+                }
             }
         });
 
