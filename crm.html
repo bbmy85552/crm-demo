@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot 平台管理仪表盘</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Inter字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 自定义样式 */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* 自定义滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563; /* bg-gray-600 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* bg-gray-500 */
+        }
+        .tab-active {
+            border-bottom-color: #4f46e5; /* indigo-600 */
+            color: #ffffff;
+        }
+        .nav-active {
+            background-color: #374151; /* bg-gray-700 */
+            color: #ffffff;
+        }
+        /* 简单的图表动画 */
+        .chart-bar {
+            transition: height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- 侧边导航栏 -->
+        <aside class="w-64 bg-gray-800/50 backdrop-blur-sm flex-shrink-0 border-r border-gray-700/50">
+            <div class="flex items-center justify-center h-20 border-b border-gray-700/50">
+                <svg class="w-10 h-10 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h1 class="text-xl font-semibold text-white ml-3">Chatbot平台</h1>
+            </div>
+            <nav class="mt-6">
+                <a href="#" id="nav-crm" class="nav-item nav-active flex items-center px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-2.308M15 19.128v-3.864m0-11.086A9.337 9.337 0 0012 2.5c-2.432 0-4.685.966-6.379 2.579M15 19.128c-2.432 0-4.685-.966-6.379-2.579m6.379 2.579l-4.243-4.243m0 0a4.5 4.5 0 10-6.364-6.364 4.5 4.5 0 006.364 6.364z" />
+                    </svg>
+                    <span class="mx-4">CRM 系统 (Nova)</span>
+                </a>
+                <a href="#" id="nav-iframe" class="nav-item flex items-center px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75c0 3.142-2.558 5.69-5.69 5.69s-5.69-2.558-5.69-5.69c0-3.142 2.558-5.69 5.69-5.69s5.69 2.558 5.69 5.69zM12 12.75c2.478 0 4.72-1.24 6.134-3.285A9 9 0 0012 3c-2.972 0-5.646 1.44-7.463 3.695A9.01 9.01 0 0112 12.75z" />
+                    </svg>
+                    <span class="mx-4">内部Chatbot (Iframe)</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="flex-1 overflow-y-auto">
+            
+            <!-- 页面1: CRM 系统 (Nova Page) -->
+            <div id="page-crm">
+                <header class="bg-gray-800/30 backdrop-blur-sm shadow-md p-6 border-b border-gray-700/50">
+                    <h2 class="text-2xl font-bold text-white">CRM 系统</h2>
+                    <p class="text-gray-400 mt-1">管理和追踪您的客户案例</p>
+                </header>
+
+                <div class="p-8">
+                    <!-- 标签页 -->
+                    <div class="border-b border-gray-700 mb-6">
+                        <nav class="flex space-x-8" aria-label="Tabs">
+                            <a href="#" id="tab-case" class="tab-link tab-active whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">案例管理 (Case Manage)</a>
+                            <a href="#" id="tab-ngo" class="tab-link text-gray-400 hover:text-white whitespace-nowrap pb-4 px-1 border-b-2 border-transparent font-medium text-sm">机构仪表盘 (NGO Dashboard)</a>
+                        </nav>
+                    </div>
+
+                    <!-- 标签页内容 -->
+                    <div id="content-case">
+                        <!-- 案例管理表格 -->
+                        <div class="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full text-sm divide-y divide-gray-700">
+                                    <thead class="bg-gray-800">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">用户</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">评级</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">类型</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">状态</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">分配客服</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-700/50">
+                                        <!-- 模拟数据行 -->
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/4F46E5/FFFFFF?text=A" alt="用户A头像">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="font-medium text-white">张三</div>
+                                                        <div class="text-gray-400">user_1a2b3c</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center text-yellow-400">
+                                                    ★★★★☆
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-900 text-red-200">高危 (Danger)</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-900 text-green-200">已开启</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-gray-300">客服专员-李四</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                                <button class="text-indigo-400 hover:text-indigo-300 font-medium">查看详情</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/10B981/FFFFFF?text=B" alt="用户B头像">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="font-medium text-white">王五</div>
+                                                        <div class="text-gray-400">user_4d5e6f</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center text-yellow-400">
+                                                    ★★★★★
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-900 text-blue-200">跟进中</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-700 text-gray-300">已关闭</span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-gray-300">客服专员-赵六</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right">
+                                                <button class="text-indigo-400 hover:text-indigo-300 font-medium">查看详情</button>
+                                            </td>
+                                        </tr>
+                                        <!-- 更多模拟数据 -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="content-ngo" class="hidden">
+                        <!-- NGO 仪表盘 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <!-- 指标卡片 -->
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-sm font-medium text-gray-400">总用户数</h3>
+                                <p class="mt-2 text-3xl font-bold text-white">1,280</p>
+                            </div>
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-sm font-medium text-gray-400">活跃案例</h3>
+                                <p class="mt-2 text-3xl font-bold text-white">76</p>
+                            </div>
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-sm font-medium text-gray-400">平均解决时间</h3>
+                                <p class="mt-2 text-3xl font-bold text-white">2.5 小时</p>
+                            </div>
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-sm font-medium text-gray-400">Chatbot使用量 (本月)</h3>
+                                <p class="mt-2 text-3xl font-bold text-white">15,6K</p>
+                            </div>
+                        </div>
+
+                        <!-- 图表区域 -->
+                        <div class="mt-8 bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white">Chatbot 使用量趋势</h3>
+                            <div class="mt-4 h-72 flex items-end space-x-4">
+                                <!-- 模拟图表 -->
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 60%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">一月</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 40%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">二月</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 75%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">三月</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 90%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">四月</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 65%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">五月</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center">
+                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 80%;"></div>
+                                    <span class="mt-2 text-xs text-gray-400">六月</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 页面2: 内部Chatbot (Iframe Page) -->
+            <div id="page-iframe" class="hidden">
+                 <header class="bg-gray-800/30 backdrop-blur-sm shadow-md p-6 border-b border-gray-700/50">
+                    <h2 class="text-2xl font-bold text-white">内部功能性 Chatbot 仪表盘</h2>
+                    <p class="text-gray-400 mt-1">监控和管理公司内部使用的Chatbot</p>
+                </header>
+
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Chatbot 卡片 -->
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white">客服机器人</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-2">处理客户咨询，提供7x24小时支持。</p>
+                            </div>
+                            <div class="mt-6">
+                                <div class="text-sm text-gray-400">月度交互量</div>
+                                <p class="text-2xl font-bold text-white">34,500</p>
+                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                            </div>
+                        </div>
+                         <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white">销售机器人</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-2">辅助销售团队，自动跟进潜在客户。</p>
+                            </div>
+                            <div class="mt-6">
+                                <div class="text-sm text-gray-400">月度交互量</div>
+                                <p class="text-2xl font-bold text-white">12,800</p>
+                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white">HR招聘机器人</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-900 text-yellow-200">维护中</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-2">初步筛选简历，安排面试日程。</p>
+                            </div>
+                            <div class="mt-6">
+                                <div class="text-sm text-gray-400">月度交互量</div>
+                                <p class="text-2xl font-bold text-white">5,230</p>
+                                <button class="w-full mt-4 bg-gray-600 text-white py-2 rounded-lg text-sm font-semibold cursor-not-allowed">查看详情</button>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-lg font-semibold text-white">技术支持机器人</h3>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mt-2">解答常见技术问题，创建工单。</p>
+                            </div>
+                            <div class="mt-6">
+                                <div class="text-sm text-gray-400">月度交互量</div>
+                                <p class="text-2xl font-bold text-white">18,900</p>
+                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                            </div>
+                        </div>
+                        <!-- 更多卡片... -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- 页面切换逻辑 ---
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = {
+            'nav-crm': document.getElementById('page-crm'),
+            'nav-iframe': document.getElementById('page-iframe')
+        };
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // 移除所有导航项的激活状态
+                navItems.forEach(nav => nav.classList.remove('nav-active'));
+                // 为当前点击项添加激活状态
+                item.classList.add('nav-active');
+
+                // 隐藏所有页面
+                Object.values(pages).forEach(page => page.classList.add('hidden'));
+                
+                // 显示对应的页面
+                const targetPage = pages[item.id];
+                if (targetPage) {
+                    targetPage.classList.remove('hidden');
+                }
+            });
+        });
+
+        // --- CRM 内部标签页切换逻辑 ---
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = {
+            'tab-case': document.getElementById('content-case'),
+            'tab-ngo': document.getElementById('content-ngo')
+        };
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // 移除所有标签的激活状态
+                tabLinks.forEach(tab => {
+                    tab.classList.remove('tab-active');
+                    tab.classList.add('text-gray-400', 'border-transparent');
+                });
+                // 为当前点击标签添加激活状态
+                link.classList.add('tab-active');
+                link.classList.remove('text-gray-400', 'border-transparent');
+
+                // 隐藏所有标签内容
+                Object.values(tabContents).forEach(content => content.classList.add('hidden'));
+
+                // 显示对应的标签内容
+                const targetContent = tabContents[link.id];
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
