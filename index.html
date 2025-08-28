@@ -881,7 +881,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-700/50">
-                                        <tr class="hover:bg-gray-700/20">
+                                        <tr class="hover:bg-gray-700/20 cursor-pointer user-row" data-user-id="user_1a2b3c">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
@@ -924,7 +924,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="hover:bg-gray-700/20">
+                                        <tr class="hover:bg-gray-700/20 cursor-pointer user-row" data-user-id="user_4d5e6f">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
@@ -1032,31 +1032,43 @@
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
                                 <h3 class="text-lg font-semibold text-white mb-4">Chatbot 使用量趋势</h3>
-                                <div class="h-64 flex items-end space-x-3">
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 60%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">一月</span>
-                                    </div>
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 45%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">二月</span>
-                                    </div>
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 75%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">三月</span>
-                                    </div>
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 90%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">四月</span>
-                                    </div>
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 65%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">五月</span>
-                                    </div>
-                                    <div class="flex-1 flex flex-col items-center">
-                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 85%;"></div>
-                                        <span class="mt-2 text-xs text-gray-400">六月</span>
-                                    </div>
+                                <!-- 折线图 -->
+                                <div class="h-64 mb-6">
+                                    <svg width="100%" height="100%" viewBox="0 0 400 200" class="overflow-visible">
+                                        <!-- 网格线 -->
+                                        <defs>
+                                            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#374151" stroke-width="1"/>
+                                            </pattern>
+                                        </defs>
+                                        <rect width="100%" height="100%" fill="url(#grid)" opacity="0.3"/>
+                                        
+                                        <!-- Y轴标签 -->
+                                        <text x="10" y="20" fill="#9CA3AF" font-size="12">1200</text>
+                                        <text x="10" y="60" fill="#9CA3AF" font-size="12">900</text>
+                                        <text x="10" y="100" fill="#9CA3AF" font-size="12">600</text>
+                                        <text x="10" y="140" fill="#9CA3AF" font-size="12">300</text>
+                                        <text x="10" y="180" fill="#9CA3AF" font-size="12">0</text>
+                                        
+                                        <!-- 折线 -->
+                                        <polyline fill="none" stroke="#6366F1" stroke-width="3" points="50,120 110,140 170,80 230,40 290,100 350,60"/>
+                                        
+                                        <!-- 数据点 -->
+                                        <circle cx="50" cy="120" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        <circle cx="110" cy="140" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        <circle cx="170" cy="80" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        <circle cx="230" cy="40" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        <circle cx="290" cy="100" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        <circle cx="350" cy="60" r="4" fill="#6366F1" stroke="#1F2937" stroke-width="2"/>
+                                        
+                                        <!-- X轴标签 -->
+                                        <text x="50" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">一月</text>
+                                        <text x="110" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">二月</text>
+                                        <text x="170" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">三月</text>
+                                        <text x="230" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">四月</text>
+                                        <text x="290" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">五月</text>
+                                        <text x="350" y="195" fill="#9CA3AF" font-size="12" text-anchor="middle">六月</text>
+                                    </svg>
                                 </div>
                             </div>
                             
@@ -1514,6 +1526,93 @@
         </main>
     </div>
 
+    <!-- 用户详情对话框 -->
+    <div id="userDetailModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-800 rounded-xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-white">用户详情分析</h2>
+                    <button id="closeModal" class="text-gray-400 hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6">
+                <!-- 用户基本信息 -->
+                <div class="mb-6">
+                    <div class="flex items-center mb-4">
+                        <img id="modalUserAvatar" class="h-16 w-16 rounded-full mr-4" src="" alt="用户头像">
+                        <div>
+                            <h3 id="modalUserName" class="text-lg font-semibold text-white"></h3>
+                            <p id="modalUserId" class="text-gray-400"></p>
+                            <p id="modalUserEmail" class="text-sm text-gray-500"></p>
+                        </div>
+                        <div class="ml-auto">
+                            <span id="modalRiskLevel" class="px-3 py-1 text-xs leading-5 font-semibold rounded-full"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- 情况总结 -->
+                    <div class="bg-gray-700/30 rounded-lg p-4">
+                        <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                            <svg class="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                            情况总结
+                        </h4>
+                        <div id="modalSummary" class="space-y-3">
+                            <!-- 动态内容 -->
+                        </div>
+                    </div>
+
+                    <!-- 处理建议 -->
+                    <div class="bg-gray-700/30 rounded-lg p-4">
+                        <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                            <svg class="w-5 h-5 text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                            </svg>
+                            处理建议
+                        </h4>
+                        <div id="modalRecommendations" class="space-y-3">
+                            <!-- 动态内容 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 聊天记录摘要 -->
+                <div class="mt-6 bg-gray-700/30 rounded-lg p-4">
+                    <h4 class="text-lg font-medium text-white mb-3 flex items-center">
+                        <svg class="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        关键对话摘要
+                    </h4>
+                    <div id="modalChatSummary" class="space-y-2">
+                        <!-- 动态内容 -->
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button class="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg">
+                        查看完整聊天记录
+                    </button>
+                    <button class="bg-yellow-600 hover:bg-yellow-500 text-white px-4 py-2 rounded-lg">
+                        分配给专员
+                    </button>
+                    <button class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg">
+                        紧急处理
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- 页面切换逻辑 ---
         const navItems = document.querySelectorAll('.nav-item');
@@ -1660,6 +1759,227 @@
 
         // 页面加载完成后添加动画
         window.addEventListener('load', addPageLoadAnimation);
+
+        // --- 用户详情对话框功能 ---
+        const userDetailModal = document.getElementById('userDetailModal');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // 用户数据模拟
+        const userData = {
+            'user_1a2b3c': {
+                name: '张三',
+                userId: 'user_1a2b3c',
+                email: 'zhang.san@email.com',
+                avatar: 'https://placehold.co/100x100/EF4444/FFFFFF?text=ZS',
+                riskLevel: '高危 (Danger)',
+                riskClass: 'bg-red-900 text-red-200',
+                summary: [
+                    {
+                        type: 'danger',
+                        icon: '⚠️',
+                        title: '轻生倾向严重',
+                        content: '在过去3次对话中均提到"不想活了"、"活着没意思"等词汇，情绪极度低落'
+                    },
+                    {
+                        type: 'warning',
+                        icon: '📢',
+                        title: '频繁提及家庭矛盾',
+                        content: '多次提到与父母关系紧张，提及"他们不理解我"、"家里太压抑"'
+                    },
+                    {
+                        type: 'info',
+                        icon: '🎓',
+                        title: '学业压力',
+                        content: '反复提到学业压力，担心考试失败，对未来感到迷茫'
+                    }
+                ],
+                recommendations: [
+                    {
+                        type: 'urgent',
+                        icon: '🚨',
+                        title: '立即干预',
+                        content: '需要专业心理咨询师立即介入，建议联系当地心理危机干预热线'
+                    },
+                    {
+                        type: 'avoid',
+                        icon: '🚫',
+                        title: '避免话题',
+                        content: '不要主动提及学校、父母相关话题，容易引起情绪波动和焦躁'
+                    },
+                    {
+                        type: 'approach',
+                        icon: '💝',
+                        title: '沟通方式',
+                        content: '使用温和、理解的语调，多倾听，避免说教，给予情感支持'
+                    }
+                ],
+                chatSummary: [
+                    '"我真的不想活了，每天都很痛苦" - 2024-08-28 09:30',
+                    '"爸妈总是吵我，我在家里就像透明人一样" - 2024-08-28 10:15',
+                    '"考试又考砸了，我觉得我就是个废物" - 2024-08-28 11:45',
+                    '"没有人理解我，我好孤独" - 2024-08-28 12:20'
+                ]
+            },
+            'user_4d5e6f': {
+                name: '王五',
+                userId: 'user_4d5e6f',
+                email: 'wang.wu@email.com',
+                avatar: 'https://placehold.co/100x100/10B981/FFFFFF?text=WW',
+                riskLevel: '跟进中',
+                riskClass: 'bg-blue-900 text-blue-200',
+                summary: [
+                    {
+                        type: 'warning',
+                        icon: '😔',
+                        title: '情绪低落',
+                        content: '最近情绪不稳定，偶尔提到生活压力，但无明显轻生倾向'
+                    },
+                    {
+                        type: 'info',
+                        icon: '💼',
+                        title: '工作困扰',
+                        content: '主要困扰来自工作压力，与同事关系紧张，担心失业'
+                    },
+                    {
+                        type: 'positive',
+                        icon: '👥',
+                        title: '社交支持',
+                        content: '有稳定的朋友圈，愿意寻求帮助，配合度较高'
+                    }
+                ],
+                recommendations: [
+                    {
+                        type: 'monitor',
+                        icon: '👁️',
+                        title: '持续观察',
+                        content: '定期跟进情绪变化，关注工作状况发展'
+                    },
+                    {
+                        type: 'support',
+                        icon: '🤝',
+                        title: '情感支持',
+                        content: '提供职业规划建议，鼓励其发挥社交支持网络的作用'
+                    },
+                    {
+                        type: 'resources',
+                        icon: '📚',
+                        title: '资源推荐',
+                        content: '可推荐职业咨询、压力管理课程等相关资源'
+                    }
+                ],
+                chatSummary: [
+                    '"最近工作压力好大，不知道该怎么办" - 2024-08-27 14:20',
+                    '"同事总是针对我，我很困扰" - 2024-08-27 15:30',
+                    '"谢谢你的建议，我会试着调整心态" - 2024-08-27 16:42'
+                ]
+            }
+        };
+
+        // 显示用户详情对话框
+        function showUserDetail(userId) {
+            const user = userData[userId];
+            if (!user) return;
+
+            // 填充基本信息
+            document.getElementById('modalUserName').textContent = user.name;
+            document.getElementById('modalUserId').textContent = user.userId;
+            document.getElementById('modalUserEmail').textContent = user.email;
+            document.getElementById('modalUserAvatar').src = user.avatar;
+            
+            const riskLevelSpan = document.getElementById('modalRiskLevel');
+            riskLevelSpan.textContent = user.riskLevel;
+            riskLevelSpan.className = `px-3 py-1 text-xs leading-5 font-semibold rounded-full ${user.riskClass}`;
+
+            // 填充情况总结
+            const summaryDiv = document.getElementById('modalSummary');
+            summaryDiv.innerHTML = user.summary.map(item => `
+                <div class="flex items-start space-x-3 p-3 rounded-lg ${getBackgroundClass(item.type)}">
+                    <span class="text-lg">${item.icon}</span>
+                    <div>
+                        <h5 class="font-medium text-white">${item.title}</h5>
+                        <p class="text-sm text-gray-300 mt-1">${item.content}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // 填充处理建议
+            const recommendationsDiv = document.getElementById('modalRecommendations');
+            recommendationsDiv.innerHTML = user.recommendations.map(item => `
+                <div class="flex items-start space-x-3 p-3 rounded-lg ${getBackgroundClass(item.type)}">
+                    <span class="text-lg">${item.icon}</span>
+                    <div>
+                        <h5 class="font-medium text-white">${item.title}</h5>
+                        <p class="text-sm text-gray-300 mt-1">${item.content}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // 填充聊天摘要
+            const chatSummaryDiv = document.getElementById('modalChatSummary');
+            chatSummaryDiv.innerHTML = user.chatSummary.map(chat => `
+                <div class="bg-gray-600/30 p-3 rounded-lg">
+                    <p class="text-sm text-gray-300">${chat}</p>
+                </div>
+            `).join('');
+
+            // 显示对话框
+            userDetailModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
+        }
+
+        // 获取背景样式类
+        function getBackgroundClass(type) {
+            const classes = {
+                'danger': 'bg-red-900/20 border border-red-700/50',
+                'warning': 'bg-yellow-900/20 border border-yellow-700/50',
+                'info': 'bg-blue-900/20 border border-blue-700/50',
+                'positive': 'bg-green-900/20 border border-green-700/50',
+                'urgent': 'bg-red-900/20 border border-red-700/50',
+                'avoid': 'bg-orange-900/20 border border-orange-700/50',
+                'approach': 'bg-purple-900/20 border border-purple-700/50',
+                'monitor': 'bg-indigo-900/20 border border-indigo-700/50',
+                'support': 'bg-teal-900/20 border border-teal-700/50',
+                'resources': 'bg-cyan-900/20 border border-cyan-700/50'
+            };
+            return classes[type] || 'bg-gray-700/20';
+        }
+
+        // 关闭对话框
+        function closeUserDetail() {
+            userDetailModal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // 恢复背景滚动
+        }
+
+        // 绑定事件监听器
+        closeModalBtn.addEventListener('click', closeUserDetail);
+        userDetailModal.addEventListener('click', (e) => {
+            if (e.target === userDetailModal) {
+                closeUserDetail();
+            }
+        });
+
+        // 为表格行添加点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const userRows = document.querySelectorAll('.user-row');
+            userRows.forEach(row => {
+                row.addEventListener('click', function(e) {
+                    // 如果点击的是操作按钮，不触发行点击事件
+                    if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+                        return;
+                    }
+                    
+                    const userId = this.getAttribute('data-user-id');
+                    showUserDetail(userId);
+                });
+            });
+        });
+
+        // ESC键关闭对话框
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !userDetailModal.classList.contains('hidden')) {
+                closeUserDetail();
+            }
+        });
 
     </script>
 </body>
