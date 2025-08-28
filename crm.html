@@ -48,180 +48,1103 @@
 <body class="bg-gray-900 text-gray-300">
 
     <div class="flex h-screen overflow-hidden">
-        <!-- 侧边导航栏 -->
-        <aside class="w-64 bg-gray-800/50 backdrop-blur-sm flex-shrink-0 border-r border-gray-700/50">
-            <div class="flex items-center justify-center h-20 border-b border-gray-700/50">
-                <svg class="w-10 h-10 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <!-- Top Navigation Bar -->
+        <header class="fixed top-0 left-0 right-0 bg-gray-800/50 backdrop-blur-sm z-10 flex items-center justify-between px-6 py-3 border-b border-gray-700/50">
+            <div class="flex items-center">
+                <svg class="w-8 h-8 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h1 class="text-xl font-semibold text-white ml-3">Chatbot平台</h1>
+                <h1 class="text-lg font-semibold text-white ml-2">Chatbot CRM</h1>
             </div>
-            <nav class="mt-6">
-                <a href="#" id="nav-crm" class="nav-item nav-active flex items-center px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+            <div class="flex-1 max-w-xl mx-8">
+                <div class="relative">
+                    <input type="text" placeholder="搜索客户、案例..." class="w-full bg-gray-700/50 text-gray-300 placeholder-gray-500 border border-gray-600/50 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500 transition-colors">
+                    <svg class="absolute right-3 top-2.5 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="relative text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                    </svg>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">3</span>
+                </button>
+                <div class="flex items-center">
+                    <img class="h-8 w-8 rounded-full" src="https://placehold.co/100x100/FFFFFF/4B5563?text=U" alt="用户头像">
+                    <span class="ml-2 text-sm text-white">Admin User</span>
+                </div>
+            </div>
+        </header>
+        <!-- Adjust main content to account for top bar -->
+        <div class="flex flex-1 pt-16 overflow-hidden">
+            <!-- Sidebar -->
+            <aside class="w-64 bg-gray-800/50 backdrop-blur-sm flex-shrink-0 border-r border-gray-700/50 overflow-y-auto">
+<!--                <div class="flex items-center justify-center h-20 border-b border-gray-700/50">
+                    <svg class="w-10 h-10 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h1 class="text-xl font-semibold text-white ml-3">Chatbot平台</h1>
+                </div>-->
+                <nav class="mt-6">
+                    <a href="#" id="nav-home" class="nav-item nav-active flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>
+                        <span class="mx-4">仪表盘</span>
+                    </a>
+                    <a href="#" id="nav-leads" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                        </svg>
+                        <span class="mx-4">潜在客户</span>
+                    </a>
+                    <a href="#" id="nav-contacts" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+                    <span class="mx-4">联系人</span>
+                </a>
+                <a href="#" id="nav-reports" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                    </svg>
+                    <span class="mx-4">报告</span>
+                </a>
+                <!-- CRM Core Features -->
+                <div class="px-4 py-2">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide">核心功能</div>
+                </div>
+                <a href="#" id="nav-crm" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-2.308M15 19.128v-3.864m0-11.086A9.337 9.337 0 0012 2.5c-2.432 0-4.685.966-6.379 2.579M15 19.128c-2.432 0-4.685-.966-6.379-2.579m6.379 2.579l-4.243-4.243m0 0a4.5 4.5 0 10-6.364-6.364 4.5 4.5 0 006.364 6.364z" />
                     </svg>
                     <span class="mx-4">CRM 系统 (Nova)</span>
                 </a>
-                <a href="#" id="nav-iframe" class="nav-item flex items-center px-6 py-3 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                <a href="#" id="nav-iframe" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75c0 3.142-2.558 5.69-5.69 5.69s-5.69-2.558-5.69-5.69c0-3.142 2.558-5.69 5.69-5.69s5.69 2.558 5.69 5.69zM12 12.75c2.478 0 4.72-1.24 6.134-3.285A9 9 0 0012 3c-2.972 0-5.646 1.44-7.463 3.695A9.01 9.01 0 0112 12.75z" />
                     </svg>
-                    <span class="mx-4">内部Chatbot (Iframe)</span>
+                    <span class="mx-4">iframe agent管理</span>
+                </a>
+                
+                <!-- Analytics & Settings -->
+                <div class="px-4 py-2 mt-4">
+                    <div class="text-xs font-semibold text-gray-500 uppercase tracking-wide">分析与设置</div>
+                </div>
+                <a href="#" id="nav-settings" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="mx-4">系统设置</span>
+                </a>
+                <a href="#" id="nav-billing" class="nav-item flex items-center px-6 py-3 text-gray-200 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H4.5m-1.5 0v.375c0 .621.504 1.125 1.125 1.125h1.5m13.125-2.25c0-.621.504-1.125 1.125-1.125H19.5m0 0v.375c0-.621.504-1.125 1.125-1.125H21v1.5M16.5 7.5h1.875c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-1.875m1.125-12H9c-.621 0-1.125.504-1.125 1.125v9.75c0 .621.504 1.125 1.125 1.125h8.25M16.5 7.5V6.75a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V7.5" />
+                    </svg>
+                    <span class="mx-4">计费管理</span>
                 </a>
             </nav>
-        </aside>
-
-        <!-- 主内容区 -->
-        <main class="flex-1 overflow-y-auto">
             
+            <!-- Bottom section -->
+            <div class="mt-auto p-6 border-t border-gray-700/50">
+                <div class="text-xs text-gray-500">
+                    <div class="font-medium">当前版本: v2.1.0</div>
+                    <div class="mt-1">活跃用户: 1,280</div>
+                    <div class="mt-1">活跃案例: 76</div>
+                </div>
+            </div>
+        </aside>
+        <!-- Main content -->
+        <main class="flex-1 overflow-y-auto bg-gray-900 p-8">
+            <!-- 仪表盘页面 -->
+            <div id="page-home">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">Chatbot平台 - 仪表盘总览</h1>
+                    <p class="text-gray-400 mt-2">实时监控您的CRM系统和Chatbot使用情况</p>
+                </header>
+                
+                <!-- 核心指标卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-br from-indigo-600 to-purple-700 p-6 rounded-xl text-white shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-indigo-100 text-sm font-medium">总活跃用户</p>
+                                <p class="text-3xl font-bold">1,280</p>
+                                <p class="text-indigo-200 text-xs mt-1">↑ 12% vs 上月</p>
+                            </div>
+                            <div class="p-3 bg-white/10 rounded-lg">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-600 to-teal-700 p-6 rounded-xl text-white shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-green-100 text-sm font-medium">活跃案例</p>
+                                <p class="text-3xl font-bold">76</p>
+                                <p class="text-green-200 text-xs mt-1">↑ 8% vs 上月</p>
+                            </div>
+                            <div class="p-3 bg-white/10 rounded-lg">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-600 to-red-700 p-6 rounded-xl text-white shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-orange-100 text-sm font-medium">Chatbot交互/小时</p>
+                                <p class="text-3xl font-bold">2.4k</p>
+                                <p class="text-orange-200 text-xs mt-1">↑ 23% vs 上月</p>
+                            </div>
+                            <div class="p-3 bg-white/10 rounded-lg">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-600 to-cyan-700 p-6 rounded-xl text-white shadow-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-blue-100 text-sm font-medium">平均响应时间</p>
+                                <p class="text-3xl font-bold">1.2s</p>
+                                <p class="text-blue-200 text-xs mt-1">↓ 0.3s vs 上月</p>
+                            </div>
+                            <div class="p-3 bg-white/10 rounded-lg">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图表和活动区域 -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- 销售管道 -->
+                    <div class="lg:col-span-2 bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-lg font-semibold text-white mb-4">销售管道进展</h3>
+                        <div class="flex justify-between items-end h-64">
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg mb-2" style="height: 120px;"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-white">142</div>
+                                    <div class="text-xs text-gray-400">潜在客户</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center flex-1 mx-2">
+                                <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-lg mb-2" style="height: 85px;"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-white">98</div>
+                                    <div class="text-xs text-gray-400">已接触</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center flex-1 mx-2">
+                                <div class="w-full bg-gradient-to-t from-purple-600 to-purple-400 rounded-t-lg mb-2" style="height: 60px;"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-white">45</div>
+                                    <div class="text-xs text-gray-400">提案中</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center flex-1">
+                                <div class="w-full bg-gradient-to-t from-green-600 to-green-400 rounded-t-lg mb-2" style="height: 35px;"></div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-white">28</div>
+                                    <div class="text-xs text-gray-400">已成交</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-gray-700/30 rounded-lg">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-400">转化率:</span>
+                                <span class="text-green-400 font-semibold">19.7% (↑2.1%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 最近活动 -->
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-lg font-semibold text-white mb-4">实时活动</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center p-3 bg-gray-700/30 rounded-lg">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-white font-medium">新案例创建</p>
+                                    <p class="text-xs text-gray-400">张三 - 2分钟前</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-700/30 rounded-lg">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-white font-medium">Chatbot交互</p>
+                                    <p class="text-xs text-gray-400">客服机器人 - 5分钟前</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-700/30 rounded-lg">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full mr-3"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-white font-medium">案例状态更新</p>
+                                    <p class="text-xs text-gray-400">王五 - 8分钟前</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center p-3 bg-gray-700/30 rounded-lg">
+                                <div class="w-2 h-2 bg-purple-400 rounded-full mr-3"></div>
+                                <div class="flex-1">
+                                    <p class="text-sm text-white font-medium">新用户注册</p>
+                                    <p class="text-xs text-gray-400">李明 - 12分钟前</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full text-indigo-400 hover:text-indigo-300 text-sm font-medium">查看全部活动 →</button>
+                    </div>
+                </div>
+                
+                <!-- 快捷操作 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50 hover:border-indigo-500/50 transition-colors cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-indigo-600 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold">创建新案例</h3>
+                                <p class="text-gray-400 text-sm">快速为新客户创建CRM案例</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50 hover:border-green-500/50 transition-colors cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-green-600 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold">配置Chatbot</h3>
+                                <p class="text-gray-400 text-sm">设置Chatbot提示词和参数</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-colors cursor-pointer">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 bg-purple-600 rounded-lg mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-semibold">生成报告</h3>
+                                <p class="text-gray-400 text-sm">导出详细的使用统计报告</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 潜在客户页面 -->
+            <div id="page-leads" class="hidden">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">潜在客户管理</h1>
+                    <p class="text-gray-400 mt-2">管理和跟踪您的潜在客户</p>
+                </header>
+                
+                <!-- 过滤器和搜索 -->
+                <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50 mb-6">
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex-1 min-w-64">
+                            <input type="text" placeholder="搜索客户名称、邮箱..." class="w-full bg-gray-700 text-white placeholder-gray-400 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                        </div>
+                        <select class="bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                            <option>所有状态</option>
+                            <option>新增</option>
+                            <option>已联系</option>
+                            <option>已转化</option>
+                            <option>已关闭</option>
+                        </select>
+                        <select class="bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                            <option>所有来源</option>
+                            <option>网站表单</option>
+                            <option>Chatbot</option>
+                            <option>社交媒体</option>
+                            <option>推荐</option>
+                        </select>
+                        <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                            添加客户
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 潜在客户列表 -->
+                <div class="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">客户信息</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">来源</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">状态</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">评分</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">最后联系</th>
+                                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-700/50">
+                                <tr class="hover:bg-gray-700/20">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/4F46E5/FFFFFF?text=ZS" alt="">
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-white">张三</div>
+                                                <div class="text-sm text-gray-400">zhang.san@email.com</div>
+                                                <div class="text-xs text-gray-500">+86 138-0000-0000</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-200">网站表单</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">已联系</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400">★★★★☆</div>
+                                            <span class="ml-2 text-sm text-gray-400">(85)</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-400">2024-08-27 14:30</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-indigo-400 hover:text-indigo-300 font-medium mr-4">编辑</button>
+                                        <button class="text-green-400 hover:text-green-300 font-medium">转化</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/20">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/10B981/FFFFFF?text=LM" alt="">
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-white">李明</div>
+                                                <div class="text-sm text-gray-400">li.ming@company.com</div>
+                                                <div class="text-xs text-gray-500">+86 139-0000-0000</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-purple-900 text-purple-200">Chatbot</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-900 text-yellow-200">新增</span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <div class="text-yellow-400">★★★☆☆</div>
+                                            <span class="ml-2 text-sm text-gray-400">(65)</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-400">2024-08-28 09:15</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button class="text-indigo-400 hover:text-indigo-300 font-medium mr-4">编辑</button>
+                                        <button class="text-blue-400 hover:text-blue-300 font-medium">联系</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 联系人页面 -->
+            <div id="page-contacts" class="hidden">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">联系人管理</h1>
+                    <p class="text-gray-400 mt-2">管理您的客户联系人信息</p>
+                </header>
+                
+                <!-- 联系人统计卡片 -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-sm font-medium text-gray-400">总联系人</h3>
+                        <p class="mt-2 text-3xl font-bold text-white">2,847</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-sm font-medium text-gray-400">活跃联系人</h3>
+                        <p class="mt-2 text-3xl font-bold text-white">1,280</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-sm font-medium text-gray-400">本月新增</h3>
+                        <p class="mt-2 text-3xl font-bold text-white">156</p>
+                    </div>
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-sm font-medium text-gray-400">平均满意度</h3>
+                        <p class="mt-2 text-3xl font-bold text-white">4.7</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                    <h3 class="text-lg font-semibold text-white mb-4">联系人列表</h3>
+                    <div class="text-center py-12">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                        </svg>
+                        <h3 class="mt-2 text-sm font-medium text-white">联系人管理功能开发中</h3>
+                        <p class="mt-1 text-sm text-gray-400">完整的联系人管理功能即将推出</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 报告页面 -->
+            <div id="page-reports" class="hidden">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">数据报告</h1>
+                    <p class="text-gray-400 mt-2">详细的业务数据分析和报告</p>
+                </header>
+                
+                <!-- 时间范围选择 -->
+                <div class="bg-gray-800/50 p-4 rounded-xl border border-gray-700/50 mb-6">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-400">时间范围:</span>
+                        <button class="px-3 py-1 text-xs bg-indigo-600 text-white rounded-full">今天</button>
+                        <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">本周</button>
+                        <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">本月</button>
+                        <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">本季度</button>
+                        <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">自定义</button>
+                    </div>
+                </div>
+                
+                <!-- 报告图表 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-lg font-semibold text-white mb-4">用户增长趋势</h3>
+                        <div class="h-64 flex items-end justify-between space-x-2">
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 60%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 75%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 90%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 85%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 95%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 100%;"></div>
+                            <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 80%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-lg font-semibold text-white mb-4">Chatbot使用统计</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">客服机器人</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-700 rounded-full h-2 mr-2">
+                                        <div class="bg-blue-500 h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <span class="text-white text-sm">85%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">销售机器人</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-700 rounded-full h-2 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                    <span class="text-white text-sm">65%</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">技术支持机器人</span>
+                                <div class="flex items-center">
+                                    <div class="w-32 bg-gray-700 rounded-full h-2 mr-2">
+                                        <div class="bg-purple-500 h-2 rounded-full" style="width: 70%"></div>
+                                    </div>
+                                    <span class="text-white text-sm">70%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 设置页面 -->
+            <div id="page-settings" class="hidden">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">系统设置</h1>
+                    <p class="text-gray-400 mt-2">配置您的CRM系统和Chatbot参数</p>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Chatbot配置 -->
+                    <div class="lg:col-span-2 bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                        <h3 class="text-lg font-semibold text-white mb-4">Chatbot配置</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">默认提示词</label>
+                                <textarea rows="4" class="w-full bg-gray-700 text-white placeholder-gray-400 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500" placeholder="输入默认的Chatbot提示词...">你是一个专业的客服助手，请友善地回答用户问题...</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">JWT过期时间（小时）</label>
+                                <input type="number" value="24" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-2">最大响应长度</label>
+                                <input type="number" value="2048" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                                保存配置
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 快捷操作 -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">系统状态</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">系统状态</span>
+                                    <span class="px-2 py-1 text-xs bg-green-900 text-green-200 rounded-full">正常</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">数据库</span>
+                                    <span class="px-2 py-1 text-xs bg-green-900 text-green-200 rounded-full">连接正常</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">API服务</span>
+                                    <span class="px-2 py-1 text-xs bg-green-900 text-green-200 rounded-full">运行中</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">数据管理</h3>
+                            <div class="space-y-3">
+                                <button class="w-full bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                    导出数据
+                                </button>
+                                <button class="w-full bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+                                    备份系统
+                                </button>
+                                <button class="w-full bg-red-900 hover:bg-red-800 text-red-200 px-4 py-2 rounded-lg text-sm transition-colors">
+                                    清理日志
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 计费管理页面 -->
+            <div id="page-billing" class="hidden">
+                <header class="mb-8">
+                    <h1 class="text-3xl font-bold text-white">计费管理</h1>
+                    <p class="text-gray-400 mt-2">管理您的Chatbot使用量和计费信息</p>
+                </header>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- 计费概览 -->
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">本月使用量</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-indigo-400">89,240</div>
+                                    <div class="text-sm text-gray-400">总交互次数</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-green-400">2,847</div>
+                                    <div class="text-sm text-gray-400">活跃用户数</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold text-purple-400">¥3,247</div>
+                                    <div class="text-sm text-gray-400">本月费用</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Chatbot使用量详情 -->
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">Chatbot使用量详情</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-700">
+                                            <th class="text-left py-2 text-gray-400">机器人类型</th>
+                                            <th class="text-center py-2 text-gray-400">交互次数</th>
+                                            <th class="text-center py-2 text-gray-400">单价(¥)</th>
+                                            <th class="text-right py-2 text-gray-400">费用(¥)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-700/50">
+                                        <tr>
+                                            <td class="py-3 text-white">客服机器人</td>
+                                            <td class="py-3 text-center text-gray-300">34,500</td>
+                                            <td class="py-3 text-center text-gray-300">0.05</td>
+                                            <td class="py-3 text-right text-white">1,725.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 text-white">销售机器人</td>
+                                            <td class="py-3 text-center text-gray-300">18,900</td>
+                                            <td class="py-3 text-center text-gray-300">0.08</td>
+                                            <td class="py-3 text-right text-white">1,512.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-3 text-white">技术支持机器人</td>
+                                            <td class="py-3 text-center text-gray-300">12,800</td>
+                                            <td class="py-3 text-center text-gray-300">0.08</td>
+                                            <td class="py-3 text-right text-white">1,024.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 计费设置 -->
+                    <div class="space-y-6">
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">当前套餐</h3>
+                            <div class="text-center">
+                                <div class="text-xl font-bold text-indigo-400">专业版</div>
+                                <div class="text-sm text-gray-400 mt-1">¥299/月</div>
+                                <div class="mt-4 p-3 bg-indigo-900/30 rounded-lg">
+                                    <div class="text-sm text-indigo-200">包含100,000次交互</div>
+                                    <div class="text-xs text-indigo-300 mt-1">超出部分按量计费</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">计费提醒</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+                                    <span class="ml-2 text-gray-400 text-sm">使用量达到80%时提醒</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-indigo-600">
+                                    <span class="ml-2 text-gray-400 text-sm">每日使用报告</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox text-indigo-600" checked>
+                                    <span class="ml-2 text-gray-400 text-sm">账单到期提醒</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- 页面1: CRM 系统 (Nova Page) -->
-            <div id="page-crm">
+            <div id="page-crm" class="hidden">
                 <header class="bg-gray-800/30 backdrop-blur-sm shadow-md p-6 border-b border-gray-700/50">
-                    <h2 class="text-2xl font-bold text-white">CRM 系统</h2>
-                    <p class="text-gray-400 mt-1">管理和追踪您的客户案例</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">CRM 系统 - 社会大众服务</h2>
+                            <p class="text-gray-400 mt-1">为社会大众提供专业的CRM服务和支持</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                创建新案例
+                            </button>
+                            <button class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                快速分配
+                            </button>
+                        </div>
+                    </div>
                 </header>
 
                 <div class="p-8">
+                    <!-- 核心指标卡片 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-red-600 to-pink-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-red-100 text-sm font-medium">高危案例</p>
+                                    <p class="text-3xl font-bold">12</p>
+                                    <p class="text-red-200 text-xs mt-1">需立即处理</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-yellow-600 to-orange-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-yellow-100 text-sm font-medium">进行中案例</p>
+                                    <p class="text-3xl font-bold">28</p>
+                                    <p class="text-yellow-200 text-xs mt-1">正在处理中</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-green-600 to-teal-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-green-100 text-sm font-medium">已解决案例</p>
+                                    <p class="text-3xl font-bold">156</p>
+                                    <p class="text-green-200 text-xs mt-1">本月完成</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-600 to-cyan-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-blue-100 text-sm font-medium">平均处理时间</p>
+                                    <p class="text-3xl font-bold">2.5h</p>
+                                    <p class="text-blue-200 text-xs mt-1">比上月改善</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- 标签页 -->
                     <div class="border-b border-gray-700 mb-6">
                         <nav class="flex space-x-8" aria-label="Tabs">
                             <a href="#" id="tab-case" class="tab-link tab-active whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">案例管理 (Case Manage)</a>
                             <a href="#" id="tab-ngo" class="tab-link text-gray-400 hover:text-white whitespace-nowrap pb-4 px-1 border-b-2 border-transparent font-medium text-sm">机构仪表盘 (NGO Dashboard)</a>
+                            <a href="#" id="tab-danger" class="tab-link text-gray-400 hover:text-white whitespace-nowrap pb-4 px-1 border-b-2 border-transparent font-medium text-sm">高危监控</a>
                         </nav>
                     </div>
 
                     <!-- 标签页内容 -->
                     <div id="content-case">
+                        <!-- 搜索和过滤 -->
+                        <div class="bg-gray-800/30 p-4 rounded-lg mb-6">
+                            <div class="flex flex-wrap gap-4 items-center">
+                                <div class="flex-1 min-w-64">
+                                    <input type="text" placeholder="搜索用户ID、姓名或案例类型..." class="w-full bg-gray-700 text-white placeholder-gray-400 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500">
+                                </div>
+                                <select class="bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2">
+                                    <option>所有状态</option>
+                                    <option>待分配</option>
+                                    <option>处理中</option>
+                                    <option>已关闭</option>
+                                    <option>高危</option>
+                                </select>
+                                <select class="bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-2">
+                                    <option>所有类型</option>
+                                    <option>高危 (Danger)</option>
+                                    <option>中等风险</option>
+                                    <option>低风险</option>
+                                    <option>跟进中</option>
+                                </select>
+                                <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                    筛选
+                                </button>
+                            </div>
+                        </div>
+                        
                         <!-- 案例管理表格 -->
                         <div class="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50">
                             <div class="overflow-x-auto">
                                 <table class="min-w-full text-sm divide-y divide-gray-700">
                                     <thead class="bg-gray-800">
                                         <tr>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">用户</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">评级</th>
-                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">类型</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">用户信息</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">优先级</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">案例类型</th>
                                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">状态</th>
                                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">分配客服</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">创建时间</th>
                                             <th class="px-6 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">操作</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-700/50">
-                                        <!-- 模拟数据行 -->
-                                        <tr>
+                                        <tr class="hover:bg-gray-700/20">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/4F46E5/FFFFFF?text=A" alt="用户A头像">
+                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/EF4444/FFFFFF?text=ZS" alt="用户头像">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="font-medium text-white">张三</div>
                                                         <div class="text-gray-400">user_1a2b3c</div>
+                                                        <div class="text-xs text-gray-500">zhang.san@email.com</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center text-yellow-400">
-                                                    ★★★★☆
+                                                <div class="flex items-center">
+                                                    <div class="w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse"></div>
+                                                    <span class="text-red-400 font-semibold">最高</span>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-900 text-red-200">高危 (Danger)</span>
+                                                <span class="px-3 py-1 text-xs leading-5 font-semibold rounded-full bg-red-900 text-red-200">高危 (Danger)</span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-900 text-green-200">已开启</span>
+                                                <span class="px-3 py-1 text-xs leading-5 font-semibold rounded-full bg-yellow-900 text-yellow-200">处理中</span>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-gray-300">客服专员-李四</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-6 w-6 rounded-full mr-2" src="https://placehold.co/100x100/6366F1/FFFFFF?text=LS" alt="">
+                                                    <span class="text-gray-300">李四</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-gray-400">
+                                                <div>2024-08-28 10:15</div>
+                                                <div class="text-xs text-gray-500">3小时前</div>
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right">
-                                                <button class="text-indigo-400 hover:text-indigo-300 font-medium">查看详情</button>
+                                                <div class="flex justify-end space-x-2">
+                                                    <button class="text-indigo-400 hover:text-indigo-300 font-medium text-sm">查看</button>
+                                                    <button class="text-green-400 hover:text-green-300 font-medium text-sm">分配</button>
+                                                    <button class="text-gray-400 hover:text-gray-300 font-medium text-sm">更多</button>
+                                                </div>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr class="hover:bg-gray-700/20">
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/10B981/FFFFFF?text=B" alt="用户B头像">
+                                                        <img class="h-10 w-10 rounded-full" src="https://placehold.co/100x100/10B981/FFFFFF?text=WW" alt="用户头像">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="font-medium text-white">王五</div>
                                                         <div class="text-gray-400">user_4d5e6f</div>
+                                                        <div class="text-xs text-gray-500">wang.wu@email.com</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center text-yellow-400">
-                                                    ★★★★★
+                                                <div class="flex items-center">
+                                                    <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                                    <span class="text-blue-400 font-semibold">中</span>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-900 text-blue-200">跟进中</span>
+                                                <span class="px-3 py-1 text-xs leading-5 font-semibold rounded-full bg-blue-900 text-blue-200">跟进中</span>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-700 text-gray-300">已关闭</span>
+                                                <span class="px-3 py-1 text-xs leading-5 font-semibold rounded-full bg-green-900 text-green-200">已关闭</span>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-gray-300">客服专员-赵六</td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <img class="h-6 w-6 rounded-full mr-2" src="https://placehold.co/100x100/8B5CF6/FFFFFF?text=ZL" alt="">
+                                                    <span class="text-gray-300">赵六</span>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-gray-400">
+                                                <div>2024-08-27 16:42</div>
+                                                <div class="text-xs text-gray-500">18小时前</div>
+                                            </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right">
-                                                <button class="text-indigo-400 hover:text-indigo-300 font-medium">查看详情</button>
+                                                <div class="flex justify-end space-x-2">
+                                                    <button class="text-indigo-400 hover:text-indigo-300 font-medium text-sm">查看</button>
+                                                    <button class="text-gray-400 hover:text-gray-300 font-medium text-sm">历史</button>
+                                                </div>
                                             </td>
                                         </tr>
-                                        <!-- 更多模拟数据 -->
                                     </tbody>
                                 </table>
                             </div>
+                            
+                            <!-- 分页 -->
+                            <div class="bg-gray-800/30 px-6 py-3 flex justify-between items-center border-t border-gray-700">
+                                <div class="text-sm text-gray-400">
+                                    显示 1-10 条，共 156 条记录
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-gray-700 text-gray-400 rounded hover:bg-gray-600">上一页</button>
+                                    <button class="px-3 py-1 text-sm bg-indigo-600 text-white rounded">1</button>
+                                    <button class="px-3 py-1 text-sm bg-gray-700 text-gray-300 rounded hover:bg-gray-600">2</button>
+                                    <button class="px-3 py-1 text-sm bg-gray-700 text-gray-300 rounded hover:bg-gray-600">3</button>
+                                    <button class="px-3 py-1 text-sm bg-gray-700 text-gray-400 rounded hover:bg-gray-600">下一页</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 快捷操作 -->
+                        <div class="mt-6 flex flex-wrap gap-4">
+                            <button class="bg-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">
+                                🆕 创建新案例
+                            </button>
+                            <button class="bg-purple-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-purple-500 transition-colors duration-200">
+                                ⚙️ 设置Chatbot Prompt
+                            </button>
+                            <button class="bg-orange-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-orange-500 transition-colors duration-200">
+                                ⏱️ 调整JWT过期时间
+                            </button>
+                            <button class="bg-green-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-green-500 transition-colors duration-200">
+                                ⚙️ 批量分配
+                            </button>
                         </div>
                     </div>
 
                     <div id="content-ngo" class="hidden">
                         <!-- NGO 仪表盘 -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                             <!-- 指标卡片 -->
                             <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
                                 <h3 class="text-sm font-medium text-gray-400">总用户数</h3>
-                                <p class="mt-2 text-3xl font-bold text-white">1,280</p>
+                                <p class="mt-2 text-3xl font-bold text-white">2,847</p>
+                                <p class="text-xs text-green-400 mt-1">↑ 12% vs 上月</p>
                             </div>
                             <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
                                 <h3 class="text-sm font-medium text-gray-400">活跃案例</h3>
-                                <p class="mt-2 text-3xl font-bold text-white">76</p>
+                                <p class="mt-2 text-3xl font-bold text-white">196</p>
+                                <p class="text-xs text-yellow-400 mt-1">→ 0% vs 上月</p>
                             </div>
                             <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
                                 <h3 class="text-sm font-medium text-gray-400">平均解决时间</h3>
-                                <p class="mt-2 text-3xl font-bold text-white">2.5 小时</p>
+                                <p class="mt-2 text-3xl font-bold text-white">2.1 小时</p>
+                                <p class="text-xs text-green-400 mt-1">↓ 0.4h vs 上月</p>
                             </div>
                             <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
                                 <h3 class="text-sm font-medium text-gray-400">Chatbot使用量 (本月)</h3>
-                                <p class="mt-2 text-3xl font-bold text-white">15,6K</p>
+                                <p class="mt-2 text-3xl font-bold text-white">89.2K</p>
+                                <p class="text-xs text-green-400 mt-1">↑ 23% vs 上月</p>
                             </div>
                         </div>
 
                         <!-- 图表区域 -->
-                        <div class="mt-8 bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
-                            <h3 class="text-lg font-semibold text-white">Chatbot 使用量趋势</h3>
-                            <div class="mt-4 h-72 flex items-end space-x-4">
-                                <!-- 模拟图表 -->
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 60%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">一月</span>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-lg font-semibold text-white mb-4">Chatbot 使用量趋势</h3>
+                                <div class="h-64 flex items-end space-x-3">
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 60%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">一月</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 45%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">二月</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 75%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">三月</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 90%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">四月</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 65%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">五月</span>
+                                    </div>
+                                    <div class="flex-1 flex flex-col items-center">
+                                        <div class="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t-md chart-bar" style="height: 85%;"></div>
+                                        <span class="mt-2 text-xs text-gray-400">六月</span>
+                                    </div>
                                 </div>
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 40%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">二月</span>
+                            </div>
+                            
+                            <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                                <h3 class="text-lg font-semibold text-white mb-4">案例分布</h3>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">高危案例</span>
+                                        <div class="flex items-center">
+                                            <div class="w-24 bg-gray-700 rounded-full h-2 mr-2">
+                                                <div class="bg-red-500 h-2 rounded-full" style="width: 15%"></div>
+                                            </div>
+                                            <span class="text-white text-sm w-8">12</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">中等风险</span>
+                                        <div class="flex items-center">
+                                            <div class="w-24 bg-gray-700 rounded-full h-2 mr-2">
+                                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 35%"></div>
+                                            </div>
+                                            <span class="text-white text-sm w-8">28</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-400">低风险</span>
+                                        <div class="flex items-center">
+                                            <div class="w-24 bg-gray-700 rounded-full h-2 mr-2">
+                                                <div class="bg-green-500 h-2 rounded-full" style="width: 50%"></div>
+                                            </div>
+                                            <span class="text-white text-sm w-8">156</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 75%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">三月</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="content-danger" class="hidden">
+                        <!-- 高危监控面板 -->
+                        <div class="mb-6">
+                            <div class="bg-red-900/20 border border-red-700 rounded-lg p-4">
+                                <div class="flex items-center">
+                                    <svg class="w-6 h-6 text-red-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 15.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                    </svg>
+                                    <div>
+                                        <h3 class="text-red-300 font-semibold">高危情况监控</h3>
+                                        <p class="text-red-400 text-sm">当前有 12 个高危案例需要立即处理</p>
+                                    </div>
                                 </div>
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 90%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">四月</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800/50 rounded-xl overflow-hidden border border-gray-700/50">
+                            <div class="bg-red-900/20 p-4 border-b border-red-700/50">
+                                <h3 class="text-red-300 font-semibold">紧急处理队列</h3>
+                            </div>
+                            <div class="divide-y divide-gray-700/50">
+                                <div class="p-4 hover:bg-gray-700/20">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="w-3 h-3 bg-red-500 rounded-full mr-3 animate-pulse"></div>
+                                            <div>
+                                                <p class="text-white font-medium">张三 - 高危情况</p>
+                                                <p class="text-sm text-gray-400">检测到异常行为，可能需要紧急干预</p>
+                                                <p class="text-xs text-red-400">创建时间: 3小时前</p>
+                                            </div>
+                                        </div>
+                                        <button class="bg-red-600 hover:bg-red-500 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                            立即处理
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 65%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">五月</span>
-                                </div>
-                                <div class="flex-1 flex flex-col items-center">
-                                    <div class="w-full bg-indigo-500 rounded-t-md chart-bar" style="height: 80%;"></div>
-                                    <span class="mt-2 text-xs text-gray-400">六月</span>
+                                <div class="p-4 hover:bg-gray-700/20">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <div class="w-3 h-3 bg-orange-500 rounded-full mr-3 animate-pulse"></div>
+                                            <div>
+                                                <p class="text-white font-medium">李明 - 高风险警报</p>
+                                                <p class="text-sm text-gray-400">连续多次尝试敏感操作</p>
+                                                <p class="text-xs text-orange-400">创建时间: 1小时前</p>
+                                            </div>
+                                        </div>
+                                        <button class="bg-orange-600 hover:bg-orange-500 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                            分配客服
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -232,70 +1155,359 @@
             <!-- 页面2: 内部Chatbot (Iframe Page) -->
             <div id="page-iframe" class="hidden">
                  <header class="bg-gray-800/30 backdrop-blur-sm shadow-md p-6 border-b border-gray-700/50">
-                    <h2 class="text-2xl font-bold text-white">内部功能性 Chatbot 仪表盘</h2>
-                    <p class="text-gray-400 mt-1">监控和管理公司内部使用的Chatbot</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white ">企业Chatbot管理仪表盘</h2>
+                            <p class="text-gray-400 mt-1">管理和监控公司内部使用的功能性Chatbot</p>
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                + 添加Chatbot
+                            </button>
+                            <button class="bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+                                批量管理
+                            </button>
+                        </div>
+                    </div>
                 </header>
 
                 <div class="p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        <!-- Chatbot 卡片 -->
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
-                            <div>
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-white">客服机器人</h3>
-                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                    <!-- 统计概览 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-600 to-emerald-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-green-100 text-sm font-medium">活跃Chatbot</p>
+                                    <p class="text-3xl font-bold">8</p>
+                                    <p class="text-green-200 text-xs mt-1">在线运行中</p>
                                 </div>
-                                <p class="text-sm text-gray-400 mt-2">处理客户咨询，提供7x24小时支持。</p>
-                            </div>
-                            <div class="mt-6">
-                                <div class="text-sm text-gray-400">月度交互量</div>
-                                <p class="text-2xl font-bold text-white">34,500</p>
-                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                         <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
-                            <div>
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-white">销售机器人</h3>
-                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                        
+                        <div class="bg-gradient-to-br from-blue-600 to-cyan-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-blue-100 text-sm font-medium">月交互总数</p>
+                                    <p class="text-3xl font-bold">89.2K</p>
+                                    <p class="text-blue-200 text-xs mt-1">↑ 23% vs 上月</p>
                                 </div>
-                                <p class="text-sm text-gray-400 mt-2">辅助销售团队，自动跟进潜在客户。</p>
-                            </div>
-                            <div class="mt-6">
-                                <div class="text-sm text-gray-400">月度交互量</div>
-                                <p class="text-2xl font-bold text-white">12,800</p>
-                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
+                        
+                        <div class="bg-gradient-to-br from-purple-600 to-indigo-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-purple-100 text-sm font-medium">平均响应时间</p>
+                                    <p class="text-3xl font-bold">0.8s</p>
+                                    <p class="text-purple-200 text-xs mt-1">↓ 0.2s vs 上月</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-orange-600 to-red-700 p-6 rounded-xl text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-orange-100 text-sm font-medium">本月成本</p>
+                                    <p class="text-3xl font-bold">¥3.2K</p>
+                                    <p class="text-orange-200 text-xs mt-1">按使用量计费</p>
+                                </div>
+                                <div class="p-3 bg-white/10 rounded-lg">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chatbot类型分类 -->
+                    <div class="mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold text-white">Chatbot功能分类</h3>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 text-xs bg-indigo-600 text-white rounded-full">全部</button>
+                                <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">在线</button>
+                                <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">维护中</button>
+                                <button class="px-3 py-1 text-xs bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600">离线</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chatbot卡片网格 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+                        <!-- 客服机器人 -->
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300 hover:shadow-lg group">
                             <div>
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-white">HR招聘机器人</h3>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg font-semibold text-white">客服机器人</h3>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200 animate-pulse">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mb-4">处理客户咨询，提供7x24小时智能支持服务。</p>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">月交互量</span>
+                                        <span class="text-white font-medium">34,500</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">满意度</span>
+                                        <span class="text-green-400 font-medium">92%</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">响应时间</span>
+                                        <span class="text-blue-400 font-medium">0.6s</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 space-y-2">
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors">管理</button>
+                                    <button class="px-4 bg-gray-700 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-600 transition-colors">设置</button>
+                                </div>
+                                <div class="text-xs text-gray-500 text-center">最后更新: 2分钟前</div>
+                            </div>
+                        </div>
+                        
+                        <!-- 销售机器人 -->
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-green-500/50 transition-all duration-300 hover:shadow-lg group">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg font-semibold text-white">销售机器人</h3>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200 animate-pulse">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mb-4">辅助销售团队，自动跟进潜在客户和管理线索。</p>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">月交互量</span>
+                                        <span class="text-white font-medium">18,900</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">转化率</span>
+                                        <span class="text-green-400 font-medium">18.5%</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">线索质量</span>
+                                        <span class="text-yellow-400 font-medium">A级</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 space-y-2">
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-green-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-green-500 transition-colors">管理</button>
+                                    <button class="px-4 bg-gray-700 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-600 transition-colors">设置</button>
+                                </div>
+                                <div class="text-xs text-gray-500 text-center">最后更新: 5分钟前</div>
+                            </div>
+                        </div>
+                        
+                        <!-- HR招聘机器人 -->
+                        <div class="bg-gray-800/50 rounded-xl border border-yellow-500/30 p-6 flex flex-col justify-between hover:border-yellow-500/50 transition-all duration-300 hover:shadow-lg group">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mr-3">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg font-semibold text-white">HR招聘机器人</h3>
+                                    </div>
                                     <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-900 text-yellow-200">维护中</span>
                                 </div>
-                                <p class="text-sm text-gray-400 mt-2">初步筛选简历，安排面试日程。</p>
-                            </div>
-                            <div class="mt-6">
-                                <div class="text-sm text-gray-400">月度交互量</div>
-                                <p class="text-2xl font-bold text-white">5,230</p>
-                                <button class="w-full mt-4 bg-gray-600 text-white py-2 rounded-lg text-sm font-semibold cursor-not-allowed">查看详情</button>
-                            </div>
-                        </div>
-                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-colors duration-300">
-                            <div>
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-lg font-semibold text-white">技术支持机器人</h3>
-                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200">在线</span>
+                                <p class="text-sm text-gray-400 mb-4">初步筛选简历，安排面试日程和候选人沟通。</p>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">月交互量</span>
+                                        <span class="text-white font-medium">5,230</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">筛选效率</span>
+                                        <span class="text-blue-400 font-medium">85%</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">维护状态</span>
+                                        <span class="text-yellow-400 font-medium">正在更新</span>
+                                    </div>
                                 </div>
-                                <p class="text-sm text-gray-400 mt-2">解答常见技术问题，创建工单。</p>
                             </div>
-                            <div class="mt-6">
-                                <div class="text-sm text-gray-400">月度交互量</div>
-                                <p class="text-2xl font-bold text-white">18,900</p>
-                                <button class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-indigo-500 transition-colors duration-200">查看详情</button>
+                            <div class="mt-6 space-y-2">
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-gray-600 text-white py-2 rounded-lg text-sm font-semibold cursor-not-allowed" disabled>维护中</button>
+                                    <button class="px-4 bg-gray-700 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-600 transition-colors">日志</button>
+                                </div>
+                                <div class="text-xs text-yellow-500 text-center">预计完成: 2小时</div>
                             </div>
                         </div>
-                        <!-- 更多卡片... -->
+                        
+                        <!-- 技术支持机器人 -->
+                        <div class="bg-gray-800/50 rounded-xl border border-gray-700/50 p-6 flex flex-col justify-between hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg group">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
+                                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg font-semibold text-white">技术支持机器人</h3>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-900 text-green-200 animate-pulse">在线</span>
+                                </div>
+                                <p class="text-sm text-gray-400 mb-4">解答常见技术问题，创建工单和技术文档检索。</p>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">月交互量</span>
+                                        <span class="text-white font-medium">12,800</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">解决率</span>
+                                        <span class="text-green-400 font-medium">78%</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-500">知识库</span>
+                                        <span class="text-purple-400 font-medium">2.5K条</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 space-y-2">
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-purple-600 text-white py-2 rounded-lg text-sm font-semibold hover:bg-purple-500 transition-colors">管理</button>
+                                    <button class="px-4 bg-gray-700 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-600 transition-colors">知识库</button>
+                                </div>
+                                <div class="text-xs text-gray-500 text-center">最后更新: 1小时前</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- 特殊功能说明 -->
+                    <div class="bg-gradient-to-r from-indigo-900/20 to-purple-900/20 p-6 rounded-xl border border-indigo-500/20 mb-6">
+                        <h3 class="text-lg font-semibold text-white mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                            高级功能特性
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="bg-gray-800/30 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">🗎 父页面内容获取</h4>
+                                <p class="text-gray-400 text-sm">可以读取和分析父页面的文字内容，提供智能总结</p>
+                            </div>
+                            <div class="bg-gray-800/30 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">🔄 数据交互传输</h4>
+                                <p class="text-gray-400 text-sm">支持与企业系统的API集成，实时数据同步</p>
+                            </div>
+                            <div class="bg-gray-800/30 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">🤖 模型定制化</h4>
+                                <p class="text-gray-400 text-sm">针对不同部门需求，进行专业化模型训练和优化</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 使用量统计图表 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">各部门Chatbot使用量分布</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-400">客服部</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                                            <div class="bg-blue-500 h-2 rounded-full" style="width: 45%"></div>
+                                        </div>
+                                        <span class="text-white text-sm w-12">34.5K</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-400">销售部</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                                            <div class="bg-green-500 h-2 rounded-full" style="width: 24%"></div>
+                                        </div>
+                                        <span class="text-white text-sm w-12">18.9K</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-400">技术部</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                                            <div class="bg-purple-500 h-2 rounded-full" style="width: 16%"></div>
+                                        </div>
+                                        <span class="text-white text-sm w-12">12.8K</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="flex items-center">
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                                        <span class="text-gray-400">人力资源</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-32 bg-gray-700 rounded-full h-2 mr-3">
+                                            <div class="bg-yellow-500 h-2 rounded-full" style="width: 7%"></div>
+                                        </div>
+                                        <span class="text-white text-sm w-12">5.2K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800/50 p-6 rounded-xl border border-gray-700/50">
+                            <h3 class="text-lg font-semibold text-white mb-4">月度使用趋势</h3>
+                            <div class="h-48 flex items-end justify-between space-x-2">
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 30%;"></div>
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 45%;"></div>
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 60%;"></div>
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 75%;"></div>
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 85%;"></div>
+                                <div class="bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t w-8" style="height: 100%;"></div>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-400 mt-2">
+                                <span>1月</span>
+                                <span>2月</span>
+                                <span>3月</span>
+                                <span>4月</span>
+                                <span>5月</span>
+                                <span>6月</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -306,8 +1518,14 @@
         // --- 页面切换逻辑 ---
         const navItems = document.querySelectorAll('.nav-item');
         const pages = {
+            'nav-home': document.getElementById('page-home'),
+            'nav-leads': document.getElementById('page-leads'),
+            'nav-contacts': document.getElementById('page-contacts'),
+            'nav-reports': document.getElementById('page-reports'),
             'nav-crm': document.getElementById('page-crm'),
-            'nav-iframe': document.getElementById('page-iframe')
+            'nav-iframe': document.getElementById('page-iframe'),
+            'nav-settings': document.getElementById('page-settings'),
+            'nav-billing': document.getElementById('page-billing')
         };
 
         navItems.forEach(item => {
@@ -320,7 +1538,9 @@
                 item.classList.add('nav-active');
 
                 // 隐藏所有页面
-                Object.values(pages).forEach(page => page.classList.add('hidden'));
+                Object.values(pages).forEach(page => {
+                    if (page) page.classList.add('hidden');
+                });
                 
                 // 显示对应的页面
                 const targetPage = pages[item.id];
@@ -334,7 +1554,8 @@
         const tabLinks = document.querySelectorAll('.tab-link');
         const tabContents = {
             'tab-case': document.getElementById('content-case'),
-            'tab-ngo': document.getElementById('content-ngo')
+            'tab-ngo': document.getElementById('content-ngo'),
+            'tab-danger': document.getElementById('content-danger')
         };
 
         tabLinks.forEach(link => {
@@ -351,7 +1572,9 @@
                 link.classList.remove('text-gray-400', 'border-transparent');
 
                 // 隐藏所有标签内容
-                Object.values(tabContents).forEach(content => content.classList.add('hidden'));
+                Object.values(tabContents).forEach(content => {
+                    if (content) content.classList.add('hidden');
+                });
 
                 // 显示对应的标签内容
                 const targetContent = tabContents[link.id];
@@ -360,6 +1583,83 @@
                 }
             });
         });
+
+        // --- 初始化默认显示首页 ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示仪表盘页面
+            const defaultNav = document.getElementById('nav-home');
+            const defaultPage = document.getElementById('page-home');
+            
+            if (defaultNav && defaultPage) {
+                // 移除所有导航激活状态
+                navItems.forEach(nav => nav.classList.remove('nav-active'));
+                // 隐藏所有页面
+                Object.values(pages).forEach(page => {
+                    if (page) page.classList.add('hidden');
+                });
+                
+                // 激活默认导航和页面
+                defaultNav.classList.add('nav-active');
+                defaultPage.classList.remove('hidden');
+            }
+        });
+
+        // --- 添加一些交互效果 ---
+        
+        // 搜索框焦点效果
+        const searchInputs = document.querySelectorAll('input[type="text"]');
+        searchInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('ring-2', 'ring-indigo-500/50');
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('ring-2', 'ring-indigo-500/50');
+            });
+        });
+
+        // 卡片悬浮效果增强
+        const cards = document.querySelectorAll('.bg-gray-800\\/50');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.transition = 'all 0.2s ease';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // 模拟实时数据更新
+        function updateRealTimeData() {
+            const activeUsers = document.querySelector('[class*="text-3xl font-bold text-white"]:has-text("1,280")');
+            if (activeUsers) {
+                const currentValue = parseInt(activeUsers.textContent.replace(',', ''));
+                const newValue = currentValue + Math.floor(Math.random() * 10) - 5;
+                if (newValue > 0) {
+                    activeUsers.textContent = newValue.toLocaleString();
+                }
+            }
+        }
+
+        // 每30秒更新一次数据（模拟）
+        setInterval(updateRealTimeData, 30000);
+
+        // 添加页面加载动画
+        function addPageLoadAnimation() {
+            const elements = document.querySelectorAll('.bg-gray-800\\/50, .bg-gradient-to-br');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // 页面加载完成后添加动画
+        window.addEventListener('load', addPageLoadAnimation);
 
     </script>
 </body>
